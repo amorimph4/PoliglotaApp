@@ -8,12 +8,12 @@
 	<ion-grid>
 		<ion-row justify-content-center>
 	  	<div>
-	  		<ion-button color="primary" href="/login" fill="outline">Sou Professor</ion-button>
+	  		<ion-button color="primary" (click)="setType('professor')" fill="outline">Sou Professor</ion-button>
 	  	</div>
     </ion-row>
     <ion-row justify-content-center>
 	  	<div>
-	    	<ion-button color="primary" href="/login">Sou Aluno</ion-button>
+	    	<ion-button color="primary" (click)="setType('aluno')" >Sou Aluno</ion-button>
 	  	</div>
   	</ion-row>
 	</ion-grid>

@@ -1,23 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title >register</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="type === 'aluno'">
   <form  #form="ngForm" (ngSubmit)="register(form)">
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
-            <ion-item *ngIf="type === 'professor'">
-              <ion-input  name="name" type="text" placeholder="professor" ngModel required></ion-input>
+            <ion-item>
+              <ion-input  name="name" type="text" placeholder="name" ngModel required></ion-input>
             </ion-item>
-            
-            <ion-item *ngIf="type === 'aluno'">
-              <ion-input  name="name" type="text" placeholder="aluno" ngModel required></ion-input>
-            </ion-item>
-
             <ion-item>
               <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
             </ion-item>
@@ -30,6 +25,55 @@
             <ion-item>
               <ion-input name="address" type="text" placeholder="your address" ngModel required></ion-input>
             </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Password" ngModel required minlength="6"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+            </ion-item>
+            <div padding>
+              <ion-checkbox color="primary" required></ion-checkbox> aceitar termo
+            </div>
+          </div>
+          <div padding>
+            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+
+<ion-content *ngIf="type === 'professor'">
+  <form  #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-input  name="name" type="text" placeholder="name" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input  name="phone" type="text" placeholder="(11) 9999-9999" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="cpf" type="text" placeholder="999.999.999-99" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="address" type="text" placeholder="your address" ngModel required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-textarea ngModel name="biografia" rows="5" placeholder="escreva algo sobre você"></ion-textarea>
+            </ion-item>
+  
+            <ion-item>
+              <ion-input name="link" type="video" placeholder="link video" ngModel required></ion-input>
+            </ion-item>
+
             <ion-item>
               <ion-input name="password" type="password" placeholder="Password" ngModel required minlength="6"></ion-input>
             </ion-item>

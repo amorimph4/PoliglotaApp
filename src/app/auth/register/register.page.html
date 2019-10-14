@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content *ngIf="type === 'aluno'">
-  <form  #form="ngForm" (ngSubmit)="register(form)">
-    <ion-grid>
+  <form  #form="ngForm" >
+    <ion-grid *ngIf="etapa == 1">
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
@@ -31,22 +31,84 @@
             <ion-item>
               <ion-input name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
             </ion-item>
-            <div padding>
-              <ion-checkbox color="primary" required></ion-checkbox> aceitar termo
-            </div>
           </div>
           <div padding>
-            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+            <ion-button  size="large" (click)="setEtapa(2)" [disabled]="form.invalid" expand="block">Próximo</ion-button>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <ion-grid *ngIf="etapa == 2">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+
+            <ion-item>
+              <ion-label>Linguage</ion-label>
+              <ion-select okText="Ok" cancelText="Cancel">
+                <ion-select-option value="brown">Brown</ion-select-option>
+                <ion-select-option value="blonde">Blonde</ion-select-option>
+                <ion-select-option value="black">Black</ion-select-option>
+                <ion-select-option value="red">Red</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-list>
+              <ion-radio-group>
+                <ion-list-header>
+                  <ion-label>Qual seu objetivo com as aulas?</ion-label>
+                </ion-list-header>
+
+                <ion-item>
+                  <ion-label>Viajar</ion-label>
+                  <ion-radio slot="start" value="biff" checked></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Fazer reuniões no trabalho</ion-label>
+                  <ion-radio slot="start" value="griff"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Manutenção do idioma</ion-label>
+                  <ion-radio slot="start" value="buford"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+
+            <ion-item>
+              <ion-textarea ngModel name="biografia" rows="5" placeholder="Você já estudou antes? Conte como foi"></ion-textarea>
+            </ion-item>
+
+            <div padding>
+              <ion-checkbox ngModel name="termo" color="primary" required></ion-checkbox> aceitar termo
+            </div>
+
+          </div>
+          <div padding>
+            <ion-button  size="large" (click)="setEtapa(3)" [disabled]="form.invalid" expand="block">Próximo</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="etapa == 3">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-label>Teste de nivelamento</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
   </form>
 </ion-content>
 
 <ion-content *ngIf="type === 'professor'">
-  <form  #form="ngForm" (ngSubmit)="register(form)">
-    <ion-grid>
+  <form  #form="ngForm">
+    <ion-grid *ngIf="etapa == 1">
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
@@ -60,16 +122,37 @@
               <ion-input  name="phone" type="text" placeholder="(11) 9999-9999" ngModel required></ion-input>
             </ion-item>
             <ion-item>
+              <ion-input name="address" type="text" placeholder="your address" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
               <ion-input name="cpf" type="text" placeholder="999.999.999-99" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="address" type="text" placeholder="your address" ngModel required></ion-input>
-            </ion-item>
-            
-            <ion-item>
               <ion-textarea ngModel name="biografia" rows="5" placeholder="escreva algo sobre você"></ion-textarea>
             </ion-item>
-  
+          </div>
+          <div padding>
+            <ion-button  size="large" [disabled]="form.invalid" expand="block">Próximo</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="etapa == 2">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+
+            <ion-item>
+              <ion-label>Linguage</ion-label>
+              <ion-select okText="Ok" cancelText="Cancel">
+                <ion-select-option value="brown">Brown</ion-select-option>
+                <ion-select-option value="blonde">Blonde</ion-select-option>
+                <ion-select-option value="black">Black</ion-select-option>
+                <ion-select-option value="red">Red</ion-select-option>
+              </ion-select>
+            </ion-item>
+
             <ion-item>
               <ion-input name="link" type="video" placeholder="link video" ngModel required></ion-input>
             </ion-item>
@@ -83,9 +166,10 @@
             <div padding>
               <ion-checkbox color="primary" required></ion-checkbox> aceitar termo
             </div>
+
           </div>
           <div padding>
-            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Register</ion-button>
+            <ion-button  size="large" (click)="register(form)" [disabled]="form.invalid" expand="block">Register</ion-button>
           </div>
         </ion-col>
       </ion-row>
